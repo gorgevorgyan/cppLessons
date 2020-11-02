@@ -59,9 +59,9 @@ void homeWork3() {	// Digit Sum
 }
 
 void homeWork4() {		// Digit Counter
-	int n, i, j, ctr, r;
+	int n, j, ctr, r;
 	cin >> n;
-	for (i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		cout << "The frequency of " <<  i << "-s is ";
 		ctr = 0;
