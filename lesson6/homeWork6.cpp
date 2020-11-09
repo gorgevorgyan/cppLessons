@@ -42,8 +42,7 @@ void (*homeworks[])()={
         for(int i = 0; i < 10; i++){
             int getNum;
             cout << "Enter N" << i << ":";
-            cin >> getNum;
-            if(getNum > 0){
+            if(cin >> getNum){
                 sortList[i] = getNum;
                 std::sort(sortList, sortList + sizeof(sortList) / sizeof(sortList[0]));
                 cout << "Array elements are: ";
