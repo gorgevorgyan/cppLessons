@@ -27,14 +27,12 @@ int * changePos(int arr[], int size){
     
     for(int i = 0; i < size; i++)
         (i == 0) ? posArr[0] = arr[size - 1] : (i == size - 1) ? posArr[size - 1] = arr[size - 2] : posArr[i] = arr[i - 1];
-    //for(int i = 0; i < size; i++) cout << posArr[i]; 
     return posArr;  
 }
 
 int * arrMult(int arr[], int size){
     for(int i = 0; i < size; i++)
         (i == size - 1) ? multArr[size - 1] = arr[size - 1] * arr[0] : multArr[i] = arr[i] * arr[i + 1];
-    //for(int i = 0; i < size; i++) cout << multArr[i];
     return multArr;
 }
 
