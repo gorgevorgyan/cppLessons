@@ -1,63 +1,57 @@
 #include <iostream>
-#include <string.h>
-#include <sstream>
-
 
 using std::cout;
 using std::endl;
 using std::cin;
 
-int getNum() {
+int getNum(int start, int end, int wrong, int def=-1) {
 	int num;
-	cin >> num;
-	while (num < 1 || num > 1000) {
-		for (int i = 0; i < 2; i++) {
-			cout << "Entered number should be in [1,1000] interval" << endl;
-			cin >> num;
-			if (num >= 1 && num <= 1000)
-				return num;
+	int count = 0;
+	while (true) {
+	    cin >> num; 
+	    if (num >= start && num <= end) 
+	        break;
+	    count++;
+		if(count >= wrong){
+		    cout << "You entered incorrect number 3 times. Exiting.";
+		    return def;
 		}
-		cout << "You entered incorrect number 3 times. Exiting.";
-		return -1;
+		cout << "Entered number should be in [1,1000] interval" << endl;
 	}
 	return num;
 }
 
-void checkNumDigitSum(int num) {
-	int myNum = num;
-	int sumNum = num;
-	int digitSum = 0;
-	while (myNum != 0) {
+int calcSum(int myNum){
+    int digitSum = 0;
+    while (myNum != 0) {
 		digitSum += myNum % 10;
 		myNum /= 10;
 	}
-	if (!(sumNum % digitSum))
-		cout << "Yes" << endl;
-	else
-		cout << "NO" << endl;
+    return digitSum;
 }
 
-void findNums(int n) {
-	for (int i = 1; i < n - 1; i++) {
-		int iState = i;
-		int iSum = 0;
-		while (iState != 0) {
-			iSum += iState % 10;
-			iState /= 10;
-		}
-		if (!(i % iSum))
-			cout << i << endl;
+bool checkNumDigitSum(int num) {
+	int digitSum = calcSum(num);
+	return ((num % digitSum) == 0); 
+}
+
+int findNums(int start, int end) {
+    int count = 0;
+	for (int i = start; i <= end; i++) {
+        if(checkNumDigitSum(i))
+            count++;
 	}
+	return count;
 }
 
 int main() {
 
-	int myNum = getNum();
+	int myNum = getNum(1, 1000, 3);
 	if (myNum != -1) {
-		checkNumDigitSum(myNum);
-		findNums(myNum);
+		cout << (checkNumDigitSum(myNum)) ? "Yes" : "No" << endl;
+		cout << findNums(1, myNum - 1) << endl;
+		cout << findNums(myNum + 1, 1000) << endl;
 	}
 	return 0;
 
 }
-
