@@ -21,13 +21,13 @@ struct  circle{
     int r;
 };
 
-float * findAreas(treeAngle* treeAngle, rectAng* rectAng, circle* circle, int sides[]){
+float * findAreas(treeAngle* treeAngle, rectAng* rectAng, circle* circle){
     float * areas = new float[3];
-    float p = ((sides[0] + sides[1] + sides[2]) / 2);
-    float treeArea = sqrt(p * (p - sides[0]) * (p - sides[1]) * (p - sides[2]));
+    float p = ((treeAngle->a + treeAngle->b + treeAngle->c) / 2);
+    float treeArea = sqrt(p * (p - treeAngle->a) * (p - treeAngle->b) * (p - treeAngle->c));
     areas[0] = treeArea;
-    areas[1] = sides[3] * sides[4];
-    areas[2] = sides[5] * sides[5]; 
+    areas[1] = rectAng->height * rectAng->width;
+    areas[2] = circle->r * circle->r; 
     return areas;
 }
 
@@ -69,7 +69,7 @@ int main(){
     setupTreeAngle(&treeAngle1, sides[0], sides[1], sides[2]);
     setupRectAng(&rectAng1, sides[3], sides[4]);
     setupCircle(&circle1, sides[5]);
-    float * adrArea = findAreas(&treeAngle1, &rectAng1, &circle1, sides);
+    float * adrArea = findAreas(&treeAngle1, &rectAng1, &circle1);
     for(int i = 0; i < 3; i++)
         cout << "The are of " << ((!i) ? "treeangle " : (i == 1) ? "rectangle " : "circle ")  << " is " << adrArea[i] << endl;
     return 0;
