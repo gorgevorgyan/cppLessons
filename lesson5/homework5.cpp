@@ -18,10 +18,17 @@ int findFactorial(int n){
     return (n * findFactorial(n - 1));
 }
 
+int findLen(int n){
+    if(!n)
+        return 0;
+    return (1 + findLen(n / 10));
+    }
+
 int main(){
     int num;
     cin >> num;
     cout << getDigits(num) << endl;
+    cout << findLen(num) << endl; 
     cout << findFactorial(num);
     return 0;
 }
