@@ -57,7 +57,7 @@ int main(){
         int operation;
         cout << "1. Send Money" << endl << "2. Cash Money" << endl << "3. Change Money" << endl << "4. Get Balance" << endl << "5. Get Operations" << endl << "6. Exit" << endl <<  "Select: ";
         cin >> operation;
-        if(operation == 6) break;
+        if(operation > 5 || operation < 1) break;
         operations[operation - 1]();
     }
     return 0;
